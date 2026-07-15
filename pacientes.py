@@ -25,40 +25,40 @@ def listar_pacientes(dados, pausar_no_final=True): #Essa função tá recebendo 
     if pausar_no_final: #Essa função lista os pacientes e espera o usuário apertar o Enter
         pausar()
 
-        def cadastrar_paciente(dados):
-            print("\n ============== CADASTRO DE PACIENTE ==============")
+def cadastrar_paciente(dados):
+    print("\n ============== CADASTRO DE PACIENTE ==============")
 
-            nome = ler_texto("Nome: ")                           # Essa função impede o usuário de deixar o campo vazio
+    nome = ler_texto("Nome: ")                           # Essa função impede o usuário de deixar o campo vazio
 
-            while True:                                         #Repete até o telefone estar correto.
-                telefone = ler_texto("Telefone, somente em números: ")
+    while True:                                         #Repete até o telefone estar correto.
+        telefone = ler_texto("Telefone, somente em números: ")
 
-                if telefone.isdigit()  and len(telefone) >= 8:   # (isdigit) verifica se todos os caracteres são números e o (len) é para conferir se tem pelo menos 8 caracteres o telefone
-                    break                                         # Atenção, o (and) não é (or), então as duas condições precisam ser verdadeiras
-                print("Digite um número de telefone válido.")
+        if telefone.isdigit()  and len(telefone) >= 8:   # (isdigit) verifica se todos os caracteres são números e o (len) é para conferir se tem pelo menos 8 caracteres o telefone
+            break                                         # Atenção, o (and) não é (or), então as duas condições precisam ser verdadeiras
+        print("Digite um número de telefone válido.")
 
-            print("\n1. Particular") 
-            print("2. Convênio")
+    print("\n1. Particular") 
+    print("2. Convênio")
 
-            while True: 
-                opcao = ler_inteiro("Tipo de atendimento: ")
-                if opcao in (1, 2):                                #Se opção estiver entre 1 ou 2 - se opção for 1 ou 2
-                    break
+    while True: 
+        opcao = ler_inteiro("Tipo de atendimento: ")
+        if opcao in (1, 2):                                #Se opção estiver entre 1 ou 2 - se opção for 1 ou 2
+            break
 
-                print("Escolha 1 ou 2.")
+        print("Escolha 1 ou 2.")
 
-            paciente = {   
-                "codigo": proximo_codigo(dados["pacientes"]),
-                "nome": nome,
-                "telefone": telefone,
-                "tipo_atendimento": "Particular" if opcao == 1 else "Convênio"          # Se a opção for 1 é particular, caso contrário é convenio
-            
-            }
-            dados["pacientes"].append(paciente)                                          # Lembre-se das aulas, (.append) coloca um novo dicionário ao final da lista de pacientes
-            salvar_dados(dados)                                #Aqui o dicionário é gravado em dados.json
+    paciente = {   
+        "codigo": proximo_codigo(dados["pacientes"]),
+        "nome": nome,
+        "telefone": telefone,
+        "tipo_atendimento": "Particular" if opcao == 1 else "Convênio"          # Se a opção for 1 é particular, caso contrário é convenio
+    
+    }
+    dados["pacientes"].append(paciente)                   # Lembre-se das aulas, (.append) coloca um novo dicionário ao final da lista de pacientes
+    salvar_dados(dados)                                #Aqui o dicionário é gravado em dados.json
 
-            print(f'\nPaciente cadastrado com o código {paciente["codigo"]}')
-            pausar()
+    print(f'\nPaciente cadastrado com o código {paciente["codigo"]}')
+    pausar()
 
 
 def alterar_paciente(dados):
@@ -141,3 +141,26 @@ def remover_paciente(dados):
         print("Remoção cancelada.")
     pausar()
 
+def menu_pacientes(dados):
+    while True: 
+        print("\n================= MENU DE PACIENTES =================")
+        print("1. Cadastrar paciente")
+        print("2. Listar paciente")
+        print("3. Alterar paciente")
+        print("4. Remover paciente")
+        print("0. Voltar paciente")
+
+        opcao = ler_inteiro("Escolha uma opção: ")
+        
+        if opcao == 1:
+            cadastrar_paciente(dados)
+        elif opcao == 2:
+            listar_pacientes(dados)
+        elif opcao == 3:
+            alterar_paciente(dados)
+        elif opcao == 4:
+            remover_paciente(dados)
+        elif opcao == 0:
+            break
+        else:
+            print("Opção inexistente.")
