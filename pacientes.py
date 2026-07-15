@@ -106,3 +106,38 @@ def alterar_paciente(dados):
     salvar_dados(dados)
     print("Paciente alterado com sucesso. ")
     pausar()
+
+def remover_paciente(dados):
+    if not dados["pacientes"]:
+        print("\nNenhum paciente cadastrado.")
+        pausar()
+        return
+    
+    listar_pacientes(dados, False)
+
+    codigo = ler_inteiro("\nCódigo do paciente que será removido: ")
+    paciente = buscar_por_codigo(dados["pacientes"], codigo)
+    if not paciente:
+        print("Paciente não encontrado. ")
+        pausar ()
+        return
+    if any(        #Essa parte verifica se o paciente aparece em alguma consulta
+        consulta["paciente_codigo"] == codigo
+        for consulta in dados["consultas"]
+     ):
+        print("O paciente possui consultas registradas e não pode ser removido.")
+        pausar()
+        return
+    
+    confirmacao =input(
+        f'Remover o paciente {paciente["nome"]}? (s/n): '
+    ).strip().lower() # (Lower) aceita resposta tanto maíuscula quanto minúscula.
+    
+    if confirmacao == "s":
+        dados["pacientes"].remove(paciente)     #O (.remove), remove né
+        salvar_dados(dados)      #Atualiza o arquivo .JSON
+        print("Paciente removido com sucesso. ")
+    else:
+        print("Remoção cancelada.")
+    pausar()
+
