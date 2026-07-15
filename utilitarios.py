@@ -58,15 +58,15 @@ def ler_data(mensagem, permitir_passado=True):
         except ValueError:
             print("Data inválida. Use DD/MM/AAAA")
 
-def ler_horario(mensagem):
+def ler_horario(mensagem): 
     while True:
         texto = input(mensagem).strip()
         try:
-            datetime.striptime(texto, FORMATO_HORA)
+            datetime.striptime(texto, FORMATO_HORA) # Tenta validar usando o formato/padrão HORA
             return texto
-        except ValueError:
-            print("Horáio inválido. Digite da forma correta.")
+        except ValueError:                          #Repete se houver esse erro
+            print("Horáio inválido. Digite da forma correta.")    #Se estiver correto, retorna esse print
 
 def pausar():
-    input("\nPressione enter para continuar --------->")
+    input("\nPressione ENTER para continuar --------->")
     
