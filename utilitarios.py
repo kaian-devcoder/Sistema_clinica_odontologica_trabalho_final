@@ -1,7 +1,9 @@
 from datetime import datetime
-FORMATO_DATA = "%d/%m/%y"
 
-def proximo_codigo(lista): #A lista é o parametro | obs, essa dunção poderá ser reaproveitada
+FORMATO_DATA = "%d/%m/%Y"
+FORMATO_HORA = "%h:%M"
+
+def proximo_codigo(lista): #A lista é o parametro | obs, essa função poderá ser reaproveitada
     if not lista: #Verifica se a lista está vazia o primeiro código será 1
         return 1
     return max(item["codigo"] for item in lista) + 1 # Procura o maior código e soma + 1 a ele - evita repetir os códigos
@@ -55,3 +57,16 @@ def ler_data(mensagem, permitir_passado=True):
             return texto
         except ValueError:
             print("Data inválida. Use DD/MM/AAAA")
+
+def ler_horario(mensagem):
+    while True:
+        texto = input(mensagem).strip()
+        try:
+            datetime.striptime(texto, FORMATO_HORA)
+            return texto
+        except ValueError:
+            print("Horáio inválido. Digite da forma correta.")
+
+def pausar():
+    input("\nPressione enter para continuar --------->")
+    
