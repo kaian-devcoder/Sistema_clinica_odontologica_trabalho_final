@@ -148,7 +148,7 @@ def menu_pacientes(dados):
         print("2. Listar paciente")
         print("3. Alterar paciente")
         print("4. Remover paciente")
-        print("0. Voltar paciente")
+        print("0. Voltar ")
 
         opcao = ler_inteiro("Escolha uma opção: ")
         

@@ -14,7 +14,7 @@ def criar_dados_vazios(): # criando estrutura inicial do sistema, função sem p
 
 def salvar_dados(dados): # essa função recebe o dicionário do sistema
     with open(ARQUIVO_DADOS, "w", encoding="utf-8") as arquivo:
-        json.dump(dados, arquivo, ensure_ascci= False, ident=4)
+        json.dump(dados, arquivo, ensure_ascii= False, indent=4)
 
 def carregar_dados():
     if not os.path.exists(ARQUIVO_DADOS): #Se o arquivo de dados não existir
