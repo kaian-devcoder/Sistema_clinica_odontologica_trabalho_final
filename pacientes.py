@@ -24,3 +24,38 @@ def listar_pacientes(dados, pausar_no_final=True): #Essa função tá recebendo 
             )
     if pausar_no_final: #Essa função lista os pacientes e espera o usuário apertar o Enter
         pausar()
+
+        def cadastrar_paciente(dados):
+            print("\n ============== CADASTRO DE PACIENTE ==============")
+
+            nome = ler_texto("Nome: ")                           # Essa função impede o usuário de deixar o campo vazio
+
+            while True:                                         #Repete até o telefone estar correto.
+                telefone = ler_texto("Telefone, somente em números: ")
+
+                if telefone.isdigit()  and len(telefone) >= 8:   # (isdigit) verifica se todos os caracteres são números e o (len) é para conferir se tem pelo menos 8 caracteres o telefone
+                    break                                         # Atenção, o (and) não é (or), então as duas condições precisam ser verdadeiras
+                print("Digite um número de telefone válido.")
+
+            print("\n1. Particular") 
+            print("2. Convênio")
+
+            while True: 
+                opcao = ler_inteiro("Tipo de atendimento: ")
+                if opcao in (1, 2):                                #Se opção estiver entre 1 ou 2 - se opção for 1 ou 2
+                    break
+
+                print("Escolha 1 ou 2.")
+
+            paciente = {   
+                "codigo": proximo_codigo(dados["pacientes"]),
+                "nome": nome,
+                "telefone": telefone,
+                "tipo_atendimento": "Particular" if opcao == 1 else "Convênio"          # Se a opção for 1 é particular, caso contrário é convenio
+            
+            }
+            dados["pacientes"].append(paciente)                                          # Lembre-se das aulas, (.append) coloca um novo dicionário ao final da lista de pacientes
+            salvar_dados(dados)                                #Aqui o dicionário é gravado em dados.json
+
+            print(f'\nPaciente cadastrado com o código {paciente["codigo"]}')
+            pausar()
