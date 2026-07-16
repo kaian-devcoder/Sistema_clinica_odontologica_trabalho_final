@@ -1,6 +1,29 @@
 {
     "pacientes": [],
-    "especialidades": [],
-    "profissionais": [],
+    "especialidades": [
+        {
+            "codigo": 1,
+            "nome": "Ortopedia",
+            "valor": 250.0
+        },
+        {
+            "codigo": 2,
+            "nome": "Cardiologia",
+            "valor": 350.0
+        },
+        {
+            "codigo": 3,
+            "nome": "Endocrinologista",
+            "valor": 250.0
+        }
+    ],
+    "profissionais": [
+        {
+            "codigo": 1,
+            "nome": "Dr. Danilo",
+            "especialidade_codigo": 1,
+            "situacao": "Ativo"
+        }
+    ],
     "consultas": []
 }

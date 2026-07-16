@@ -12,7 +12,7 @@ def buscar_por_codigo(lista, codigo):
     for item in lista: # percorrendo cada item da lista
         if item["codigo"] == codigo: # compara o código do item com o código procurado
             return item # quando encontra, devolve o registro/item e termina a função
-        return None #Só será executado depois que toda a lista for percorrida e sem encontrar o código, no caso até terminar o laço(for)
+    return None #Só será executado depois que toda a lista for percorrida e sem encontrar o código, no caso até terminar o laço(for)
     
 def ler_inteiro(mensagem): 
     while True: # Função repete até o usuário acertar
