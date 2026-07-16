@@ -17,13 +17,6 @@
             "valor": 250.0
         }
     ],
-    "profissionais": [
-        {
-            "codigo": 1,
-            "nome": "Dr. Danilo",
-            "especialidade_codigo": 1,
-            "situacao": "Ativo"
-        }
-    ],
+    "profissionais": [],
     "consultas": []
 }

@@ -1,7 +1,7 @@
 from datetime import datetime
 
 FORMATO_DATA = "%d/%m/%Y"
-FORMATO_HORA = "%h:%M"
+FORMATO_HORA = "%H:%M"
 
 def proximo_codigo(lista): #A lista é o parametro | obs, essa função poderá ser reaproveitada
     if not lista: #Verifica se a lista está vazia o primeiro código será 1
@@ -62,7 +62,7 @@ def ler_horario(mensagem):
     while True:
         texto = input(mensagem).strip()
         try:
-            datetime.striptime(texto, FORMATO_HORA) # Tenta validar usando o formato/padrão HORA
+            datetime.strptime(texto, FORMATO_HORA) # Tenta validar usando o formato/padrão HORA
             return texto
         except ValueError:                          #Repete se houver esse erro
             print("Horáio inválido. Digite da forma correta.")    #Se estiver correto, retorna esse print
